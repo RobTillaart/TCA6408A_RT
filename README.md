@@ -20,7 +20,7 @@ Arduino library for TCA6408A I2C 8 bits IO expander.
 
 This library is to use TCA6408A .
 
-The TCA6408A has a RESET pin to reset the device.
+The TCA6408A has a RESET pin to reset the device (TODO investigate).
 
 The TCA6408A supports interrupts (TODO investigate).
 
@@ -47,9 +47,9 @@ TODO elaborate
 
 ### Related
 
-- https://github.com/RobTillaart/TCA6408A
-- https://github.com/RobTillaart/PCF8574 - 8 bits IO expander
-
+- https://github.com/RobTillaart/TCA6408A - 8 bits I2C IO expander
+- https://github.com/RobTillaart/PCF8574 - 8 bits I2C IO expander
+- https://github.com/RobTillaart/PCF8575 - 16 bits I2C IO expander
 
 
 ### Tested
@@ -62,9 +62,7 @@ TODO: Test on Arduino UNO and ESP32
 ### I2C Address
 
 
-The device has one address pin.
-
-Address = 0x20 or 0x21.
+The device has one address pin to set address 0x20 or 0x21.
 
 
 ### I2C multiplexing
@@ -113,18 +111,20 @@ TODO: create and run performance sketch on hardware.
 
 ### PinMode8
 
-- **void setPinMode8(uint8_t mask)**
-- **uint8_t getPinMode8()**
+- **void setPinMode8(uint8_t mask)** per bit 1 = input 0 = output.
+- **uint8_t getPinMode8()** returns set mask.
 
 ### Polarity
 
-- **void setPolarity8(uint8_t mask)**
-- **uint8_t getPolarity8()**
+- **void setPolarity8(uint8_t mask)** per bit 1 = inverted, 0 = not.
+- **uint8_t getPolarity8()** returns set mask.
 
 ### Core IO
 
-- **void digitalWrite8(uint8_t mask)**
-- **uint8_t digitalRead8()**
+- **void digitalWrite8(uint8_t mask)** write all pins at once.
+- **uint8_t digitalRead8()** read all pins at once.
+- **void digitalWrite1(uint8_t pin, uint8_t value)** pin = 0..7, HIGH / LOW
+- **uint8_t digitalRead1(uint8_t pin)** pin = 0..7
 
 ### Debug
 
@@ -136,6 +136,7 @@ TODO: create and run performance sketch on hardware.
 #### Must
 
 - improve documentation
+- validate implementation per function.
 
 #### Should
 
@@ -145,6 +146,8 @@ TODO: create and run performance sketch on hardware.
 
 #### Could
 
+- add examples
+- add unit tests ?
 
 #### Wont
 

@@ -42,11 +42,8 @@ public:
   //  core IO
   void     digitalWrite8(uint8_t mask);
   uint8_t  digitalRead8();
-
-  //  TODO single pin interface.
-  //  check mask ? user responsibility
-  //  void     digitalWrite1(uint8_t value);  //  HIGH LOW
-  //  uint8_t  digitalRead1();  //  idem.
+  void     digitalWrite1(uint8_t pin, uint8_t value);  //  HIGH LOW
+  uint8_t  digitalRead1(uint8_t pin);
 
   //       DEBUG
   int      getLastError();

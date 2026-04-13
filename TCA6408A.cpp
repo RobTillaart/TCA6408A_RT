@@ -104,6 +104,23 @@ uint8_t TCA6408A::digitalRead8()
 }
 
 
+void TCA6408A::digitalWrite1(uint8_t pin, uint8_t value)
+{
+  uint8_t data = readRegister(TCA6408A_REG_OUTPUT);
+  if (value == LOW) data &= ~(1 << pin);
+  else              data |= (1 << pin;
+  writeRegister(TCA6408A_REG_OUTPUT, data);
+  //  TODO error propagation
+}
+
+
+uint8_t TCA6408A::digitalRead1(uint8_t pin)
+{
+  uint8_t data = readRegister(TCA6408A_REG_INPUT) & _IOMask;
+  return (data & (1<< pin)) > 0;
+}
+
+
 /////////////////////////////////////////////
 //
 //  DEBUG
