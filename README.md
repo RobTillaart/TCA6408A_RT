@@ -51,6 +51,9 @@ TODO elaborate
 - https://github.com/RobTillaart/PCF8574 - 8 bits I2C IO expander
 - https://github.com/RobTillaart/PCF8575 - 16 bits I2C IO expander
 
+datasheet
+- https://www.ti.com/lit/ds/symlink/tca6408a.pdf
+
 
 ### Tested
 

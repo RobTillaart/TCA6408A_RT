@@ -108,7 +108,7 @@ void TCA6408A::digitalWrite1(uint8_t pin, uint8_t value)
 {
   uint8_t data = readRegister(TCA6408A_REG_OUTPUT);
   if (value == LOW) data &= ~(1 << pin);
-  else              data |= (1 << pin;
+  else              data |= (1 << pin);
   writeRegister(TCA6408A_REG_OUTPUT, data);
   //  TODO error propagation
 }
