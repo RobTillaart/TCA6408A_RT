@@ -8,7 +8,7 @@
 #include "TCA6408A.h"
 
 
-TCA6408A tca(0x40);
+TCA6408A tca(0x20);
 
 
 void setup()
