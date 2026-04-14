@@ -64,7 +64,7 @@ void loop(void)
   Serial.print(" Inputs (P0–P3): ");
   for (uint8_t mask = 0x01; mask < 0x10; mask <<= 1)
   {
-    Serial.print(data & mask);
+    Serial.print((data & mask) ? 1 : 0);
   }
   Serial.println();
 
