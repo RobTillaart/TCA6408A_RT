@@ -4,7 +4,7 @@
 //    DATE: 2026-04-13
 // VERSION: 0.1.0
 // PURPOSE: Arduino library for TCA6408A I2C 8 bits IO expander.
-//     URL: https://github.com/RobTillaart/TCA6408A
+//     URL: https://github.com/RobTillaart/TCA6408A_RT
 
 
 
