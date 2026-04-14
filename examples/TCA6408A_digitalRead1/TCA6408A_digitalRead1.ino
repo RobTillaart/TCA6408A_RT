@@ -1,5 +1,5 @@
 //
-//    FILE: TCA6408A_demo2.ino
+//    FILE: TCA6408A_digitalRead1.ino
 //  AUTHOR: Rob Tillaart
 // PURPOSE: test basic behaviour and performance
 //     URL: https://github.com/RobTillaart/TCA6408A
@@ -29,8 +29,14 @@ void setup()
     while (1);
   }
 
-  //  Set all as inputs, 0xFF
-  tca.setPinMode8(0xFF);
+  //  Set all pins as inputs
+  //  Set all pins to inverted
+  //  setPinMOde8() is faster, this shows how it can be done per pin.
+  for (int pin = 0; pin < 8; pin++)
+  {
+    tca.setPinMode1(pin, 1);
+    tca.setPolarity1(pin, 1);
+  }
 
   //  Invert INPUT polarity so pressing button == 1
   tca.setPolarity8(0xFF);

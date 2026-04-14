@@ -31,18 +31,22 @@ public:
   uint8_t  getAddress();
 
 
-  //  1 = input 0 = output
+  //  1 = INPUT 0 = OUTPUT
   void     setPinMode8(uint8_t mask);
   uint8_t  getPinMode8();
+  void     setPinMode1(uint8_t pin, uint8_t value);
+  uint8_t  getPinMode1(uint8_t pin);
 
-  //  1 = inverted, 0 = not.
+  //  1 = INVERTED, 0 = NORMAL.
   void     setPolarity8(uint8_t mask);
   uint8_t  getPolarity8();
+  void     setPolarity1(uint8_t pin, uint8_t value);
+  uint8_t  getPolarity1(uint8_t pin);
 
-  //  core IO
+  //  1 = HIGH, 0 = LOW
   void     digitalWrite8(uint8_t mask);
   uint8_t  digitalRead8();
-  void     digitalWrite1(uint8_t pin, uint8_t value);  //  HIGH LOW
+  void     digitalWrite1(uint8_t pin, uint8_t value);
   uint8_t  digitalRead1(uint8_t pin);
 
   //       DEBUG

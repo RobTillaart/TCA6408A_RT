@@ -23,7 +23,6 @@ TCA6408A::TCA6408A(uint8_t address, TwoWire *wire)
   _error = TCA6408A_OK;
 }
 
-
 bool TCA6408A::begin()
 {
   //  reset variables
@@ -36,13 +35,11 @@ bool TCA6408A::begin()
   return true;
 }
 
-
 bool TCA6408A::isConnected()
 {
   _wire->beginTransmission(_address);
   return (_wire->endTransmission() == 0);
 }
-
 
 uint8_t TCA6408A::getAddress()
 {
@@ -59,6 +56,7 @@ void TCA6408A::setPinMode8(uint8_t mask)
   writeRegister(TCA6408A_REG_CONFIG, mask);
   _IOMask = mask;
   //  TODO error propagation
+  return;
 }
 
 uint8_t TCA6408A::getPinMode8()
@@ -66,6 +64,27 @@ uint8_t TCA6408A::getPinMode8()
   // return _IOMask; ???
   uint8_t mask = readRegister(TCA6408A_REG_CONFIG);
   return mask;
+}
+
+void TCA6408A::setPinMode1(uint8_t pin, uint8_t value)
+{
+  uint8_t data = readRegister(TCA6408A_REG_CONFIG);
+  uint8_t prev = data;
+  if (value == LOW) data &= ~(1 << pin);
+  else              data |= (1 << pin);
+  if (data != prev)
+  {
+    writeRegister(TCA6408A_REG_CONFIG, data);
+    _IOMask = data;
+    //  TODO error propagation
+  }
+  return;
+}
+
+uint8_t TCA6408A::getPinMode1(uint8_t pin)
+{
+  uint8_t data = readRegister(TCA6408A_REG_CONFIG);
+  return (data & (1<< pin)) > 0;
 }
 
 
@@ -77,12 +96,33 @@ void TCA6408A::setPolarity8(uint8_t mask)
 {
   writeRegister(TCA6408A_REG_POLARITY, mask);
   //  TODO error propagation
+  return;
 }
 
 uint8_t TCA6408A::getPolarity8()
 {
   uint8_t mask = readRegister(TCA6408A_REG_POLARITY);
   return mask;
+}
+
+void TCA6408A::setPolarity1(uint8_t pin, uint8_t value)
+{
+  uint8_t data = readRegister(TCA6408A_REG_POLARITY);
+  uint8_t prev = data;
+  if (value == LOW) data &= ~(1 << pin);
+  else              data |= (1 << pin);
+  if (data != prev)
+  {
+    writeRegister(TCA6408A_REG_POLARITY, data);
+    //  TODO error propagation
+  }
+  return;
+}
+
+uint8_t TCA6408A::getPolarity1(uint8_t pin)
+{
+  uint8_t data = readRegister(TCA6408A_REG_CONFIG);
+  return (data & (1<< pin)) > 0;
 }
 
 
@@ -94,8 +134,8 @@ void TCA6408A::digitalWrite8(uint8_t mask)
 {
   writeRegister(TCA6408A_REG_OUTPUT, mask);
   //  TODO error propagation
+  return;
 }
-
 
 uint8_t TCA6408A::digitalRead8()
 {
@@ -103,16 +143,19 @@ uint8_t TCA6408A::digitalRead8()
   return mask;
 }
 
-
 void TCA6408A::digitalWrite1(uint8_t pin, uint8_t value)
 {
   uint8_t data = readRegister(TCA6408A_REG_OUTPUT);
+  uint8_t prev = data;
   if (value == LOW) data &= ~(1 << pin);
   else              data |= (1 << pin);
-  writeRegister(TCA6408A_REG_OUTPUT, data);
-  //  TODO error propagation
+  if (data != prev)
+  {
+    writeRegister(TCA6408A_REG_OUTPUT, data);
+    //  TODO error propagation
+  }
+  return;
 }
-
 
 uint8_t TCA6408A::digitalRead1(uint8_t pin)
 {
@@ -149,7 +192,6 @@ int TCA6408A::writeRegister(uint8_t reg, uint8_t value)
   }
   return n;
 }
-
 
 uint8_t TCA6408A::readRegister(uint8_t reg)
 {
