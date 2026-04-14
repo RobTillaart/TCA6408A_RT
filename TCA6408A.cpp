@@ -182,10 +182,10 @@ int TCA6408A::getLastError()
 //
 int TCA6408A::writeRegister(uint8_t reg, uint8_t value)
 {
-  Wire.beginTransmission(_address);
-  Wire.write(reg);
-  Wire.write(value);
-  int n = Wire.endTransmission();
+  _wire->beginTransmission(_address);
+  _wire->write(reg);
+  _wire->write(value);
+  int n = _wire->endTransmission();
   if (n != 0)
   {
     _error = n;
@@ -195,16 +195,16 @@ int TCA6408A::writeRegister(uint8_t reg, uint8_t value)
 
 uint8_t TCA6408A::readRegister(uint8_t reg)
 {
-  Wire.beginTransmission(_address);
-  Wire.write(reg);
-  Wire.endTransmission(false);
-  int n = Wire.requestFrom(_address, (uint8_t)1);
+  _wire->beginTransmission(_address);
+  _wire->write(reg);
+  _wire->endTransmission(false);
+  int n = _wire->requestFrom(_address, (uint8_t)1);
   if (n != 1)
   {
     _error = TCA6408A_REQUEST_ERROR;
     return 0xFF;
   }
-  return Wire.read();
+  return _wire->read();
 }
 
 
