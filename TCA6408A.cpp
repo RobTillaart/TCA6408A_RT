@@ -201,12 +201,12 @@ uint8_t TCA6408A::readRegister(uint8_t reg)
   if (n != 0)
   {
     _error = n;
-    return 0xFFFF;
+    return 0xFF;
   }
   if (1 != _wire->requestFrom(_address, (uint8_t)1))
   {
     _error = TCA6408A_REQUEST_ERROR;
-    return 0xFFFF;
+    return 0xFF;
   }
   return _wire->read();
 }
