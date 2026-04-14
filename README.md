@@ -200,6 +200,7 @@ pin = 0..7
 - add examples 
   - interrupt example, no handling in library itself
 - improve error handling
+  - range checking parameters
 
 #### Could
 
