@@ -38,9 +38,6 @@ void setup()
     tca.setPolarity1(pin, 1);
   }
 
-  //  Invert INPUT polarity so pressing button == 1
-  tca.setPolarity8(0xFF);
-
   Serial.print(millis());
   Serial.println(": config done..");
 }
