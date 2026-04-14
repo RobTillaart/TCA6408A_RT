@@ -31,7 +31,7 @@ void setup()
 
   //  Set all pins as inputs
   //  Set all pins to inverted
-  //  setPinMOde8() is faster, this shows how it can be done per pin.
+  //  setPinMode8() is faster, this shows how it can be done per pin.
   for (int pin = 0; pin < 8; pin++)
   {
     tca.setPinMode1(pin, 1);
