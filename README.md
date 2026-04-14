@@ -78,8 +78,8 @@ The current version of the library does not support a reset() function yet.
 ### Related
 
 - https://github.com/RobTillaart/TCA6408A_RT - 8 bits I2C IO expander
-- https://github.com/RobTillaart/TCA6416A - 16 bits I2C IO expander
-- https://github.com/RobTillaart/TCA6424A - 24 bits I2C IO expander
+- https://github.com/RobTillaart/TCA6416A_RT - 16 bits I2C IO expander
+- https://github.com/RobTillaart/TCA6424A_RT - 24 bits I2C IO expander
 - https://github.com/RobTillaart/PCF8574 - 8 bits I2C IO expander
 - https://github.com/RobTillaart/PCF8575 - 16 bits I2C IO expander
 
