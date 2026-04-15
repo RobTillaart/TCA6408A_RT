@@ -19,8 +19,9 @@ constexpr uint8_t TCA6408A_REG_CONFIG   = 0x03;  //  RW
 TCA6408A::TCA6408A(uint8_t address, TwoWire *wire)
 {
   _address = address;
-  _wire = wire;
-  _error = TCA6408A_OK;
+  _wire    = wire;
+  _error   = TCA6408A_OK;
+  _IOMask  = 0xFF;
 }
 
 bool TCA6408A::begin()
