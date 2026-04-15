@@ -1,5 +1,5 @@
 //
-//    FILE: TCA6408A_digitalRead1.ino
+//    FILE: TCA6408A_digitalRead8.ino
 //  AUTHOR: Rob Tillaart
 // PURPOSE: test basic behaviour and performance
 //     URL: https://github.com/RobTillaart/TCA6408A_RT
@@ -9,6 +9,8 @@
 
 
 TCA6408A tca(0x20);
+
+uint8_t value, previous;
 
 
 void setup()
@@ -30,29 +32,27 @@ void setup()
   }
 
   //  Set all pins as inputs
-  //  Set all pins to inverted
-  //  setPinMode8() is faster, this shows how it can be done per pin.
-  for (int pin = 0; pin < 8; pin++)
-  {
-    tca.setPinMode1(pin, 1);
-    tca.setPolarity1(pin, 1);
-  }
+  tca.setPinMode8(0xFF);
+  tca.setPolarity8(0xFF);
 
   Serial.print(millis());
   Serial.println(": config done..");
+
+  previous = tca.digitalRead8();
 }
 
 
 void loop(void)
 {
-  Serial.print(millis());
-  Serial.print(": \t");
-  for (int pin = 7; pin > -1; pin--)
+  //  polling
+  value = tca.digitalRead8();
+  if (value != previous)
   {
-    Serial.print(tca.digitalRead1(pin) ? 1 : 0);
-    delay(100);
+    previous = value;
+    Serial.print(millis());
+    Serial.print(": \t");
+    Serial.println(value, HEX);
   }
-  Serial.println();
 }
 
 

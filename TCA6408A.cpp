@@ -10,10 +10,10 @@
 
 #include "TCA6408A.h"
 
-constexpr uint8_t TCA6408A_REG_INPUT    = 0x00;
-constexpr uint8_t TCA6408A_REG_OUTPUT   = 0x01;
-constexpr uint8_t TCA6408A_REG_POLARITY = 0x02;
-constexpr uint8_t TCA6408A_REG_CONFIG   = 0x03;
+constexpr uint8_t TCA6408A_REG_INPUT    = 0x00;  //  R
+constexpr uint8_t TCA6408A_REG_OUTPUT   = 0x01;  //  RW
+constexpr uint8_t TCA6408A_REG_POLARITY = 0x02;  //  RW
+constexpr uint8_t TCA6408A_REG_CONFIG   = 0x03;  //  RW
 
 
 TCA6408A::TCA6408A(uint8_t address, TwoWire *wire)
@@ -121,7 +121,7 @@ void TCA6408A::setPolarity1(uint8_t pin, uint8_t value)
 
 uint8_t TCA6408A::getPolarity1(uint8_t pin)
 {
-  uint8_t data = readRegister(TCA6408A_REG_CONFIG);
+  uint8_t data = readRegister(TCA6408A_REG_POLARITY);
   return (data & (1<< pin)) > 0;
 }
 
@@ -137,12 +137,6 @@ void TCA6408A::digitalWrite8(uint8_t mask)
   return;
 }
 
-uint8_t TCA6408A::digitalRead8()
-{
-  uint8_t mask = readRegister(TCA6408A_REG_INPUT) & _IOMask;
-  return mask;
-}
-
 void TCA6408A::digitalWrite1(uint8_t pin, uint8_t value)
 {
   uint8_t data = readRegister(TCA6408A_REG_OUTPUT);
@@ -155,6 +149,13 @@ void TCA6408A::digitalWrite1(uint8_t pin, uint8_t value)
     //  TODO error propagation
   }
   return;
+}
+
+
+uint8_t TCA6408A::digitalRead8()
+{
+  uint8_t mask = readRegister(TCA6408A_REG_INPUT) & _IOMask;
+  return mask;
 }
 
 uint8_t TCA6408A::digitalRead1(uint8_t pin)
