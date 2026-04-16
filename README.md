@@ -96,8 +96,7 @@ TODO: Test on Arduino UNO and ESP32
 
 ### I2C Address
 
-
-The device has one address pin to set address 0x20 or 0x21. (32/33 decimal)
+The device has one address pin to set address to 0x20 or 0x21. (32/33 decimal)
 
 
 ### I2C multiplexing
@@ -187,7 +186,6 @@ pin = 0..7
 #### Must
 
 - improve documentation
-- validate implementation per function.
 
 #### Should
 
@@ -201,6 +199,7 @@ pin = 0..7
   - interrupt example, no handling in library itself
 - improve error handling
   - range checking parameters
+  - pass parameter by reference and return error flag.
 
 #### Could
 
