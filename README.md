@@ -16,7 +16,7 @@ Arduino library for TCA6408A I2C 8 bits IO expander.
 
 ## Description
 
-**Experimental - Work in progress.**
+**Experimental**
 
 This library is to use TCA6408A I2C 8 bit IO expander. 
 This device supports a voltage range of 1.65 .. 5.5 Volt.
@@ -195,8 +195,6 @@ pin = 0..7
 - implement RESET support
   - reset pin configuration (begin?)
   - reset pin example
-- add examples 
-  - interrupt example, no handling in library itself
 - improve error handling
   - range checking parameters
   - pass parameter by reference and return error flag.
@@ -204,7 +202,7 @@ pin = 0..7
 #### Could
 
 - add examples
-- add unit tests ?
+- add unit tests
 
 #### Wont
 
