@@ -49,26 +49,25 @@ void setup()
 
 void loop(void)
 {
-  uint8_t data = tca.digitalRead8();
-
-  tca.digitalWrite8(0xFF);
+  tca.digitalWrite8(0x80);
   delay(500);
-
   tca.digitalWrite8(0x00);
   delay(500);
 
-  tca.digitalWrite8(data << 4);
+  tca.digitalWrite8(0x40);
+  delay(500);
+  tca.digitalWrite8(0x00);
   delay(500);
 
-  //  Print input/output states
-  Serial.print(" Inputs (P0–P3): ");
-  for (uint8_t mask = 0x01; mask < 0x10; mask <<= 1)
-  {
-    Serial.print((data & mask) ? 1 : 0);
-  }
-  Serial.println();
+  tca.digitalWrite8(0x20);
+  delay(500);
+  tca.digitalWrite8(0x00);
+  delay(500);
 
-  delay(2000);
+  tca.digitalWrite8(0x10);
+  delay(500);
+  tca.digitalWrite8(0x00);
+  delay(500);
 }
 
 
